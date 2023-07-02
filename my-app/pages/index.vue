@@ -1,5 +1,9 @@
 <template>
-  <div></div>
+  <div>
+    <MainSection title="Home" :loading="false"></MainSection>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+const loading = ref(false);
+</script>
