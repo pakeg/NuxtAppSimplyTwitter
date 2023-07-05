@@ -1,8 +1,8 @@
 import formidable from "formidable";
-import { createMediaFile } from "../../dp/mediaFiles";
-import { createTweet } from "../../dp/tweets";
-import { tweetTransformer } from "../../transformers/tweet";
-import { uploadToCloudinary } from "../../utils/cloudinary";
+import { createMediaFile } from "../../../dp/mediaFiles";
+import { createTweet } from "../../../dp/tweets";
+import { tweetTransformer } from "../../../transformers/tweet";
+import { uploadToCloudinary } from "../../../utils/cloudinary";
 
 export default defineEventHandler(async (event) => {
   const form = formidable({});
@@ -24,6 +24,12 @@ export default defineEventHandler(async (event) => {
     text: fields.text,
     authorId: userId,
   };
+
+  const replyTo = fields.replyTo;
+
+  if (replyTo && replyTo !== "null") {
+    tweetData.replyToId = replyTo;
+  }
 
   const tweet = await createTweet(tweetData);
 
