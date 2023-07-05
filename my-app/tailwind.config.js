@@ -5,11 +5,11 @@ module.exports = {
 
   safelist: [
     {
-      pattern: /text-(red|green|blue)-(100|400)/,
+      pattern: /text-(red|green|blue|yellow)-(100|400)/,
       variants: ["group-hover"],
     },
     {
-      pattern: /bg-(red|green|blue)-(100|400)/,
+      pattern: /bg-(red|green|blue|yellow)-(100|400)/,
       variants: ["group-hover"],
     },
   ],

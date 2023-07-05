@@ -67,6 +67,15 @@
         </template>
         <template v-slot:name> More </template>
       </SidebarTab>
+
+      <div class="hidden xl:block">
+        <Button liquid size="lg"><span class="font-bold">Tweet</span></Button>
+      </div>
+      <div class="xl:hidden block">
+        <Button
+          ><div class="w-6 h-6 font-bold"><PencilIcon /></div
+        ></Button>
+      </div>
     </div>
   </div>
 </template>
@@ -81,6 +90,7 @@ import {
   DocumentTextIcon,
   UserIcon,
   DotsCircleHorizontalIcon,
+  PencilIcon,
 } from "@heroicons/vue/outline";
 
 const { defaultTransition } = useTailwindConfig();

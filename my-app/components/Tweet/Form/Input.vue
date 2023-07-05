@@ -19,6 +19,13 @@
 
     <!--FILE PICK BLOCK -->
     <div class="p-4 pl-16">
+      <img
+        :src="inputImageUrl"
+        v-if="inputImageUrl"
+        alt="pickfile"
+        class="rounded-2xl border"
+        :class="twitterBorderColor"
+      />
       <input
         type="file"
         ref="imageInput"
@@ -30,44 +37,50 @@
 
     <!-- ICONS BLOCK-->
     <div class="flex p-2 pl-14">
-      <div
-        @click="handleImageClick"
-        class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
-      >
-        <IconImageFrame />
+      <div class="flex w-full text-white">
+        <div
+          @click="handleImageClick"
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+        >
+          <IconImageFrame />
+        </div>
+        <div
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+        >
+          <IconGif />
+        </div>
+        <div
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+        >
+          <IconChart />
+        </div>
+        <div
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+        >
+          <IconEmoji />
+        </div>
+        <div
+          class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
+        >
+          <IconCalendar />
+        </div>
       </div>
-      <div
-        class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
-      >
-        <IconGif />
-      </div>
-      <div
-        class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
-      >
-        <IconChart />
-      </div>
-      <div
-        class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
-      >
-        <IconEmoji />
-      </div>
-      <div
-        class="p-2 text-blue-400 rounded-full hover:bg-blue-500 dark:hover:bg-dim-800 cursor-pointer"
-      >
-        <IconCalendar />
-      </div>
-    </div>
 
-    <div>
-      <button @click="handleFormSubmit">Tweet</button>
+      <div class="ml-auto">
+        <Button size="sm" :disabled="isDisabled" @onClick="handleFormSubmit"
+          >Tweet</Button
+        >
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const { twitterBorderColor } = useTailwindConfig();
 const text = ref("");
 const imageInput = ref();
 const selectedFile = ref(null);
+const inputImageUrl = ref(null);
 const emits = defineEmits(["onSubmit"]);
 
 const props = defineProps({
@@ -77,10 +90,12 @@ const props = defineProps({
   },
 });
 
+const isDisabled = computed(() => text.value === "");
+
 const handleFormSubmit = () => {
   emits("onSubmit", {
     text: text.value,
-    mediaFiles: [selectedFile.value]
+    mediaFiles: [selectedFile.value],
   });
 };
 
@@ -92,5 +107,13 @@ const handleImageChange = (event) => {
   const file = event.target.files[0];
 
   selectedFile.value = file;
+
+  const reader = new FileReader();
+
+  reader.onload = (event) => {
+    inputImageUrl.value = event.target.result;
+  };
+
+  reader.readAsDataURL(file);
 };
 </script>
