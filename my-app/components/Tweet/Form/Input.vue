@@ -11,6 +11,7 @@
 
       <div class="w-full p-2">
         <textarea
+          :placeholder="props.placeholder"
           v-model="text"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
         ></textarea>
@@ -86,6 +87,10 @@ const emits = defineEmits(["onSubmit"]);
 const props = defineProps({
   user: {
     type: Object,
+    required: true,
+  },
+  placeholder: {
+    type: String,
     required: true,
   },
 });

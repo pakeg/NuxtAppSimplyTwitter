@@ -1,5 +1,17 @@
 <template>
   <div class="flex flex-col">
+    <!-- Search bar -->
+    <div class="relative m-2">
+      <div
+        class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer"
+      >
+        <div class="w-6 h-6">
+          <SearchIcon />
+          <input type="text" />
+        </div>
+      </div>
+    </div>
+
     <SidebarPreviewCard title="What's happening">
       <SidebarItem v-for="whatsHappeningItem in whatsHappeningItems">
         <div class="flex flex-row justify-between p-2">
@@ -41,6 +53,8 @@
   </div>
 </template>
 <script setup>
+import { SearchIcon } from "@heroicons/vue/outline";
+
 const whatsHappeningItems = ref([
   {
     title: "SpaceX",

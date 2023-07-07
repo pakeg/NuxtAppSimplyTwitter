@@ -9,8 +9,9 @@
       :class="[defaultTransition, twitterBorderColor]"
       v-for="tweet in props.tweets"
       :key="tweet.id"
+      @click.native="redirect(tweet)"
     >
-      <TweetItem :tweet="tweet" />
+      <TweetItem :tweet="tweet" compact />
     </div>
   </div>
 </template>
@@ -25,4 +26,8 @@ const props = defineProps({
 });
 
 const isEmptyArray = computed(() => props.tweets.length === 0);
+
+const redirect = (tweet) => {
+  navigateTo("/status/" + tweet.id);
+};
 </script>

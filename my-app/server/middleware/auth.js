@@ -4,7 +4,12 @@ import { sendError } from "h3";
 import { getUserById } from "../dp/users";
 
 export default defineEventHandler(async (event) => {
-  const endpoints = ["/api/auth/user", "/api/user/tweets", "/api/tweets"];
+  const endpoints = [
+    "/api/auth/user",
+    "/api/user/tweets",
+    "/api/tweets",
+    "/api/tweets/:id",
+  ];
 
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
