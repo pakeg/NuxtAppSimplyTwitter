@@ -69,12 +69,12 @@
       </SidebarTab>
 
       <div class="hidden xl:block">
-        <Button liquid size="lg" @click="emits('onTweet')"
+        <Button liquid size="lg" @on-click="emits('onTweet')"
           ><span class="font-bold">Tweet</span></Button
         >
       </div>
       <div class="xl:hidden block">
-        <Button @click="emits('onTweet')"
+        <Button @on-click="emits('onTweet')"
           ><div class="w-6 h-6 font-bold"><PencilIcon /></div
         ></Button>
       </div>
