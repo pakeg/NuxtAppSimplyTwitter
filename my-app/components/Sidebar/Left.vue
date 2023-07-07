@@ -69,10 +69,12 @@
       </SidebarTab>
 
       <div class="hidden xl:block">
-        <Button liquid size="lg"><span class="font-bold">Tweet</span></Button>
+        <Button liquid size="lg" @click="emits('onTweet')"
+          ><span class="font-bold">Tweet</span></Button
+        >
       </div>
       <div class="xl:hidden block">
-        <Button
+        <Button @click="emits('onTweet')"
           ><div class="w-6 h-6 font-bold"><PencilIcon /></div
         ></Button>
       </div>
@@ -94,4 +96,6 @@ import {
 } from "@heroicons/vue/outline";
 
 const { defaultTransition } = useTailwindConfig();
+
+const emits = defineEmits(["onTweet"]);
 </script>
