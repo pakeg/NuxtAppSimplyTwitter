@@ -5,19 +5,18 @@
         <LogoTwitter />
       </div>
     </div>
-
     <div class="pt-5 space-y-6">
       <Input
         type="text"
         label="Username"
         v-model="data.username"
-        :placeholder="@username"
+        placeholder="@username"
       />
       <Input
         type="password"
         label="Password"
         v-model="data.password"
-        :placeholder="@password"
+        placeholder="@password"
       />
       <Button liquid @click="handleLogin" :disabled="isButtonDisabled"
         >Login</Button

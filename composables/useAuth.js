@@ -4,7 +4,7 @@ import useFetchApi from "./useFetchApi";
 export default () => {
   const useAuthToken = () => useState("auth_token");
   const useAuthUser = () => useState("auth_user");
-  const useAuthLoading = () => useState("auth_loading", () => true);
+  const useAuthLoading = () => useState("auth_loading", () => false);
 
   const setToken = (newToken) => {
     const authToken = useAuthToken();
@@ -40,12 +40,12 @@ export default () => {
   };
 
   const logout = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
       try {
-        await useFetchApi('/api/auth/logout', {
-          method: 'POST'
-        })
-        
+        await useFetchApi("/api/auth/logout", {
+          method: "POST",
+        });
+
         setToken(null);
         setUser(null);
 

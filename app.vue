@@ -1,7 +1,7 @@
 <template>
   <div :class="{ dark: darkMode }">
     <div class="bg-white dark:bg-dim-900">
-      <LoadingPage v-if="useAuthLoading" />
+      <LoadingPage v-if="isAuthLoading" />
       <div v-else-if="user" class="min-h-full">
         <div
           class="grid grid-cols-12 ms-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5"
@@ -63,7 +63,7 @@ emitter.$on("replyTweet", (tweet) => {
   openPostTweetModal(tweet);
 });
 
-emitter.$on("toggleDarkMode", (tweet) => {
+emitter.$on("toggleDarkMode", () => {
   darkMode.value = !darkMode.value;
 });
 

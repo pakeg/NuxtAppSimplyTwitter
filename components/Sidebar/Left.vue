@@ -116,8 +116,7 @@ import {
   DotsCircleHorizontalIcon,
   PencilIcon,
   ChevronDownIcon,
-} from "@heroicons/vue/outline";
-
+} from "@vue-hero-icons/outline";
 const { defaultTransition } = useTailwindConfig();
 
 const props = defineProps({

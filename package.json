@@ -2,24 +2,26 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nunxt prepare && prisma generate"
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "postinstall": "nuxi prepare && prisma generate"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.8.0",
+    "@tailwindcss/forms": "^0.5.3",
     "@types/node": "^18",
     "nuxt": "^3.6.0",
-    "typescript": "latest",
-    "@tailwindcss/forms": "^0.5.3",
-    "prisma": "^4.16.2"
+    "prisma": "^4.16.2",
+    "typescript": "latest"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.18",
+    "@headlessui/vue": "^1.7.14",
     "@prisma/client": "^4.16.2",
+    "@vue-hero-icons/outline": "^1.7.2",
+    "@vue-hero-icons/solid": "^1.7.2",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.3",
     "formidable": "^3.5.0",
