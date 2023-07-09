@@ -1,4 +1,5 @@
 import jwt_decode from "jwt-decode";
+import useFetchApi from "./useFetchApi";
 
 export default () => {
   const useAuthToken = () => useState("auth_token");
@@ -30,6 +31,23 @@ export default () => {
 
         setToken(data.access_token);
         setUser(data.user);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  const logout = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        await useFetchApi('/api/auth/logout', {
+          method: 'POST'
+        })
+        
+        setToken(null);
+        setUser(null);
 
         resolve(true);
       } catch (error) {
@@ -70,7 +88,7 @@ export default () => {
 
     const newRefreshTime = jwt.exp - 60000;
 
-    setTimeout( async () => {
+    setTimeout(async () => {
       await refreshToken();
       reRefreshAccessToken();
     }, newRefreshTime);
@@ -94,5 +112,5 @@ export default () => {
     });
   };
 
-  return { login, useAuthUser, useAuthToken, initAuth, useAuthLoading };
+  return { login, logout, useAuthUser, useAuthToken, initAuth, useAuthLoading };
 };

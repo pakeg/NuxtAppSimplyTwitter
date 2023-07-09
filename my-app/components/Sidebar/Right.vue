@@ -6,10 +6,15 @@
         class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer"
       >
         <div class="w-6 h-6">
-          <SearchIcon />
-          <input type="text" />
+          <SearchIcon @click="handleSearch" />
         </div>
       </div>
+      <input
+        v-model="search"
+        type="text"
+        class="flex items-center w-full pl-12 text-sm text-black font-normal dark:text-gray-100 bg-gray-200 border border-gray-200 rounded-full shadow dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-blue-200 h-9"
+        placeholder="Search tweet"
+      />
     </div>
 
     <SidebarPreviewCard title="What's happening">
@@ -50,11 +55,52 @@
         </div>
       </SidebarItem>
     </SidebarPreviewCard>
+
+    <footer>
+      <ul class="mx-2 my-4 text-xs text-gray-500">
+        <li class="inline-block mx-2">
+          <a
+            @click.prevent="handleToggleDarkMode"
+            href="#"
+            class="hover:underline"
+            >Dark mode</a
+          >
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Privacy policy</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Cookie policy</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Ads info</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">More</a>
+        </li>
+      </ul>
+    </footer>
   </div>
 </template>
 <script setup>
 import { SearchIcon } from "@heroicons/vue/outline";
+const search = ref("");
+const emitter = useEmitter();
 
+const handleSearch = () => {
+  useRouter().push({
+    path: "/search",
+    query: {
+      q: search.value,
+    },
+  });
+};
+
+const handleToggleDarkMode = () => {
+  emitter.$emit("toggleDarkMode");
+};
+
+// simple data
 const whatsHappeningItems = ref([
   {
     title: "SpaceX",

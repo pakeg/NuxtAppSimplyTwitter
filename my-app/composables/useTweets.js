@@ -33,6 +33,20 @@ export default () => {
     });
   };
 
+  const getSearchTweets = (params = {}) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await useFetchApi("/api/tweets", {
+          method: "GET",
+          params,
+        });
+        resolve(response);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
   const getTweetById = (tweetId) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -68,5 +82,6 @@ export default () => {
     usePostTweetModal,
     openPostTweetModal,
     useReplyTweet,
+    getSearchTweets,
   };
 };
