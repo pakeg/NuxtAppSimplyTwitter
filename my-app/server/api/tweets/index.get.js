@@ -2,27 +2,42 @@ import { getTweets } from "../../dp/tweets";
 import { tweetTransformer } from "../../transformers/tweet";
 
 export default defineEventHandler(async (event) => {
-  const tweets = await getTweets({
+  const { query } = useQuery(event);
+
+  let request;
+  request = {
     include: {
       author: true,
       mediaFiles: true,
       replies: {
-        include:{
-          author: true
-        }
+        include: {
+          author: true,
+        },
       },
       replyTo: {
-        include:{
-          author: true
-        }
-      }
+        include: {
+          author: true,
+        },
+      },
     },
-    orderBy:[
+    orderBy: [
       {
-        createdAt: 'desc'
-      }
-    ]
-  });
+        createdAt: "desc",
+      },
+    ],
+  };
+
+  if (!!query) {
+    request = {
+      ...request,
+      where: {
+        text: {
+          contains: query,
+        },
+      },
+    };
+  }
+  const tweets = await getTweets(request);
 
   return {
     tweets: tweets.map(tweetTransformer),
