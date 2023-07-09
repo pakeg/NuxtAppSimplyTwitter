@@ -47,7 +47,7 @@ import {
   RefreshIcon,
   HeartIcon,
   UploadIcon,
-} from "@heroicons/vue/outline";
+} from "@vue-hero-icons/outline";
 
 const props = defineProps({
   tweet: {

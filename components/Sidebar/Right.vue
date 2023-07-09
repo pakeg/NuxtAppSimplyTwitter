@@ -83,7 +83,7 @@
   </div>
 </template>
 <script setup>
-import { SearchIcon } from "@heroicons/vue/outline";
+import { SearchIcon } from "@vue-hero-icons/outline";
 const search = ref("");
 const emitter = useEmitter();
 
