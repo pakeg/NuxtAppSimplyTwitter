@@ -5,7 +5,7 @@
         <LogoTwitter />
       </div>
     </div>
-    <div class="pt-5 space-y-6">
+    <div class="pt-5 space-y-6 h-[320px]">
       <div class="space-y-6" v-if="isHandleAction">
         <Input
           type="text"
