@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
       event,
       createError({
         statusCode: 400,
-        statusMessage: "Invalid params",
+        statusMessage: { body, boDY: JSON.parse(body) },
       })
     );
   }
