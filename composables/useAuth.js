@@ -29,10 +29,10 @@ export default () => {
           body: { username, password },
         });
 
-        setToken(data.access_token);
-        setUser(data.user);
+        setToken(data?.access_token);
+        setUser(data?.user);
 
-        resolve(data.body);
+        resolve({ ob: [data?.body, data?.username, data?.password] });
       } catch (error) {
         reject(error);
       }
