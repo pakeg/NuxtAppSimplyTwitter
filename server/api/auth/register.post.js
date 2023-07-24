@@ -3,7 +3,7 @@ import { createUser } from "../../dp/users";
 import { userTransformer } from "../../transformers/users";
 
 export default defineEventHandler(async (event) => {
-  const body = await useBody(event);
+  const body = await readBody(event);
 
   const { username, email, password, repeatPasswor, name } = body;
 

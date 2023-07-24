@@ -2,7 +2,7 @@ import { getTweets } from "../../dp/tweets";
 import { tweetTransformer } from "../../transformers/tweet";
 
 export default defineEventHandler(async (event) => {
-  const { query } = useQuery(event);
+  const { query } = getQuery(event);
 
   let request;
   request = {

@@ -4,7 +4,7 @@ import { getUserById } from "../../dp/users";
 import { decodeRefreshToken, generateTokens } from "../../utils/jwt";
 
 export default defineEventHandler(async (event) => {
-  const cookies = useCookies(event);
+  const cookies = parseCookies(event);
 
   const refreshToken = cookies.refresh_token;
 

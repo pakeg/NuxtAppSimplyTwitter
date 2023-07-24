@@ -6,7 +6,7 @@ import { userTransformer } from "../../transformers/users";
 import { createRefreshToken } from "../../dp/refreshTokens";
 
 export default defineEventHandler(async (event) => {
-  const body = await useBody(event);
+  const body = await readBody(event);
 
   const { username, password } = body;
 
