@@ -105,7 +105,7 @@
 </template>
 
 <script setup>
-import { HomeIcon } from "@heroicons/vue/solid";
+import { HomeIcon } from "@vue-hero-icons/solid";
 import {
   HashtagIcon,
   BellIcon,
