@@ -37,10 +37,11 @@ async function handleLogin() {
   data.loading = true;
 
   try {
-    await login({
+    let b = await login({
       username: data.username,
       password: data.password,
     });
+    console.log("b", b, "data", data.username, data.password);
   } catch (error) {
   } finally {
     data.loading = false;
