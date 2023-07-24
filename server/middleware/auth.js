@@ -14,14 +14,14 @@ export default defineEventHandler(async (event) => {
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
 
-    return pattern.match(getRequestURL(event));
+    return pattern.match(new UrlPattern(getRequestURL(event)));
   });
 
   if (!isHandledByThisMiddleware) {
     return;
   }
 
-  const token = getHeader(event, "authorization")?.split(" ")[1];
+  const token = getHeader(event, "Authorization")?.split(" ")[1];
 
   const decoded = decodeAccessToken(token);
 
