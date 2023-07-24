@@ -18,13 +18,9 @@ export default defineEventHandler(async (event) => {
   });
 
   const { fields, files } = response;
-  return {
-    text: 12213423412341234,
-    userId: event.context?.auth?.user?.id,
-    user: event?.context?.sessions,
-    userR: event?.context?.sessions?.user?.id,
-    userA: event?.context?.params?.user?.id,
-  };
+
+  const userId = event.context?.auth?.user?.id;
+
   const tweetData = {
     text: fields.text,
     authorId: userId,
