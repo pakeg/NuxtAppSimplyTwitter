@@ -29,18 +29,11 @@ export default () => {
           body: { username: username, password: password },
         });
 
-        setToken(data?.access_token);
-        setUser(data?.user);
+        //setToken(data.access_token);
+        //setUser(data.user);
 
         resolve({
-          ob: [
-            data?.body,
-            data?.username,
-            data?.password,
-            username,
-            password,
-            data?.event,
-          ],
+          ob: [data, username, password],
         });
       } catch (error) {
         reject(error);
