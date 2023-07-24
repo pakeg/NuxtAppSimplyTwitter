@@ -75,6 +75,7 @@ const data = reactive({
 });
 
 async function handleLogin() {
+  alert("handleLogin");
   const { login } = useAuth();
   data.loading = true;
 
@@ -89,7 +90,8 @@ async function handleLogin() {
   }
 }
 
-async function handleRegister() {
+const handleRegister = async () => {
+  alert("handleRegister");
   const { registerUser } = useAuth();
   data.loading = true;
 
@@ -105,7 +107,7 @@ async function handleRegister() {
   } finally {
     data.loading = false;
   }
-}
+};
 
 const isButtonDisabled = computed(() => {
   return !data.username || !data.password || data.loading;
