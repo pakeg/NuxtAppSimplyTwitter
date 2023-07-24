@@ -65,6 +65,8 @@
 </template>
 
 <script setup>
+const { login, registerUser } = useAuth();
+console.log(login, registerUser);
 const isHandleAction = ref(true);
 const data = reactive({
   username: "",
@@ -76,7 +78,6 @@ const data = reactive({
 
 async function handleLogin() {
   alert("handleLogin");
-  const { login } = useAuth();
   data.loading = true;
 
   try {
@@ -92,7 +93,6 @@ async function handleLogin() {
 
 const handleRegister = async () => {
   alert("handleRegister");
-  const { registerUser } = useAuth();
   data.loading = true;
 
   try {
