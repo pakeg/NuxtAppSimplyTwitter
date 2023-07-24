@@ -9,12 +9,13 @@ export default defineEventHandler(async (event) => {
     "/api/user/tweets",
     "/api/tweets",
     "/api/tweets/:id",
+    "/api/auth/refresh",
   ];
 
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
 
-    return pattern.match(getRequestURL(event).pathname);
+    return pattern.match(getRequestURL(event));
   });
 
   if (!isHandledByThisMiddleware) {
