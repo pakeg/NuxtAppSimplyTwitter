@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
 
-    return pattern.match(new UrlPattern(getRequestURL(event)));
+    return pattern.match(getRequestURL(event));
   });
 
   if (!isHandledByThisMiddleware) {
