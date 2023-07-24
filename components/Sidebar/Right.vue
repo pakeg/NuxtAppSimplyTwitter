@@ -20,7 +20,6 @@
     <SidebarPreviewCard title="What's happening">
       <SidebarItem v-for="whatsHappeningItem in whatsHappeningItems">
         <div class="flex flex-row justify-between p-2">
-          >
           <h2 class="font-bold text-gray-800 text-md dark:text-white">
             {{ whatsHappeningItem.title }}
           </h2>
