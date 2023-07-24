@@ -19,6 +19,7 @@ export default defineEventHandler(async (event) => {
 
   const { fields, files } = response;
 
+  return { response, event };
   const userId = event.context?.auth?.user?.id;
 
   const tweetData = {

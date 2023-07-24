@@ -50,7 +50,7 @@ const handleFormSubmit = async (data) => {
       mediaFiles: data.mediaFiles,
       replyTo: props.replyTo?.id,
     });
-
+    console.log(response);
     emits("onSuccess", response?.tweet);
   } catch (error) {
   } finally {
