@@ -32,7 +32,7 @@ export default () => {
         setToken(data.access_token);
         setUser(data.user);
 
-        resolve(true);
+        resolve(data.body);
       } catch (error) {
         reject(error);
       }
