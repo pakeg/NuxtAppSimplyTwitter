@@ -6,6 +6,12 @@
       </div>
     </div>
     <div class="pt-5 space-y-6">
+      <p>
+        data.username <mark> {{ data.username }}</mark>
+      </p>
+      <p>
+        data.username <mark> {{ data.password }}</mark>
+      </p>
       <Input
         type="text"
         label="Username"
@@ -28,7 +34,7 @@
 <script setup>
 const data = reactive({
   username: "",
-  password: "",
+  password: "123",
   loading: false,
 });
 
