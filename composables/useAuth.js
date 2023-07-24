@@ -26,15 +26,13 @@ export default () => {
       try {
         const data = await $fetch("/api/auth/login", {
           method: "POST",
-          body: { username: username, password: password },
+          body: { username, password },
         });
 
-        //setToken(data.access_token);
-        //setUser(data.user);
+        setToken(data.access_token);
+        setUser(data.user);
 
-        resolve({
-          ob: [data, username, password],
-        });
+        resolve(true);
       } catch (error) {
         reject(error);
       }

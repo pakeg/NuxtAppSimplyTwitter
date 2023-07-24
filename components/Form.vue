@@ -41,7 +41,6 @@ async function handleLogin() {
       username: data.username,
       password: data.password,
     });
-    console.log("b", b, "data", data.username, data.password);
   } catch (error) {
   } finally {
     data.loading = false;
