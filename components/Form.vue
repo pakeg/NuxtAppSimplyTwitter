@@ -5,8 +5,8 @@
         <LogoTwitter />
       </div>
     </div>
-    <div class="pt-5 space-y-6 h-[320px]">
-      <div class="space-y-6" v-if="isHandleAction">
+    <div class="pt-5 space-y-6">
+      <div class="space-y-6 h-[320px]" v-if="isHandleAction">
         <Input
           type="text"
           label="Username"
@@ -20,7 +20,7 @@
           placeholder="@password"
         />
       </div>
-      <div class="space-y-6" v-else>
+      <div class="space-y-6 h-[320px]" v-else>
         <Input
           type="text"
           label="Username"
