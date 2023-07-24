@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   const { username, password } = body;
-  return { username1: username, password2: password, body };
+  return "234123412341234";
   if (!username || !password) {
     return sendError(
       event,
