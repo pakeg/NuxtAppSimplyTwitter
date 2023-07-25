@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     return;
   }
 
-  const token = getHeader(event, "Authorization");
+  const token = event.node.req.headers["authorization"];
 
   const decoded = decodeAccessToken(token);
 

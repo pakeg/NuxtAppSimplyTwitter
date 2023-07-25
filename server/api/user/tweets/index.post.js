@@ -6,10 +6,9 @@ import { uploadToCloudinary } from "../../../utils/cloudinary";
 
 export default defineEventHandler(async (event) => {
   const form = formidable({});
-  const body = await readBody(event);
 
   const response = await new Promise((resolve, reject) => {
-    form.parse(event, (err, fields, files) => {
+    form.parse(event.node.req, (err, fields, files) => {
       if (err) {
         reject(err);
       }
