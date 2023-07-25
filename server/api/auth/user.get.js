@@ -3,7 +3,7 @@ import { decodeAccessToken } from "../../utils/jwt";
 import { getUserById } from "../../dp/users";
 
 export default defineEventHandler(async (event) => {
-  const token = event.node.req.headers["authorization"];
+  const token = event.node.req.headers["Authorization"];
 
   const decoded = decodeAccessToken(token);
 
