@@ -1,5 +1,5 @@
 import UrlPattern from "url-pattern";
-import { decodeAccessToken } from "../utils/jwt";
+import { decodeAccessToken, decodeRefreshToken } from "../utils/jwt";
 import { sendError } from "h3";
 import { getUserById } from "../dp/users";
 
@@ -25,8 +25,9 @@ export default defineEventHandler(async (event) => {
   const token = getHeader(event, "Authorization")?.split(" ")[1];
 
   const decoded = decodeAccessToken(token);
+  const decode = decodeRefreshToken(token);
 
-  if (!decoded) {
+  if (!decoded || !decode) {
     return sendError(
       event,
       createError({
