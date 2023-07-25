@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
     return;
   }
 
-  const token = getHeader(event, "Authorization")?.split(" ")[1];
+  const token = getHeader(event, "Authorization");
 
   const decoded = decodeAccessToken(token);
 
