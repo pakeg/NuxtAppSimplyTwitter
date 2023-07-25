@@ -2,7 +2,7 @@ import { userTransformer } from "../../transformers/users";
 import { decodeAccessToken } from "../utils/jwt";
 import { getUserById } from "../../dp/users";
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const token = event.node.req.headers["authorization"];
 
   const decoded = decodeAccessToken(token);
