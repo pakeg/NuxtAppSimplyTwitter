@@ -1,7 +1,6 @@
 import UrlPattern from "url-pattern";
 import { decodeAccessToken } from "../utils/jwt";
 import { sendError } from "h3";
-import { getUserById } from "../dp/users";
 
 export default defineEventHandler(async (event) => {
   const endpoints = [
@@ -19,13 +18,7 @@ export default defineEventHandler(async (event) => {
   });
 
   if (!isHandledByThisMiddleware) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 401,
-        statusMessage: "Access denied",
-      })
-    );
+    return;
   }
 
   const token = event.node.req.headers["authorization"];
@@ -38,22 +31,6 @@ export default defineEventHandler(async (event) => {
       createError({
         statusCode: 401,
         statusMessage: "Unauthorized",
-      })
-    );
-  }
-
-  try {
-    const user = await getUserById(decoded.userId);
-
-    event.context.auth = { user };
-    event.context.der = decoded.userId;
-    event.context.First = 12312141341314;
-  } catch (error) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 401,
-        statusMessage: "Have some problems with context",
       })
     );
   }

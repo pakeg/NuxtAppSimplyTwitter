@@ -100,10 +100,6 @@ export default () => {
         resolve({
           user: data.user,
           puk: 1234,
-          der: data.der,
-          text: data.text,
-          dd: data.dd,
-          data,
         });
       } catch (error) {
         reject(error);
