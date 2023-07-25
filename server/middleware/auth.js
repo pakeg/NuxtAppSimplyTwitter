@@ -15,14 +15,18 @@ export default defineEventHandler(async (event) => {
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
 
-    return pattern.match(getRequestURL(event).pathname);
+    return pattern.match(event.node.res.url);
   });
 
   if (!isHandledByThisMiddleware) {
     return;
   }
 
-  const token = getHeader(event, "Authorization")?.split(" ")[1];
+  const token =
+    event.node.req.headers["Authorization"] != "" ||
+    event.node.req.headers["Authorization"] != undefined
+      ? event.node.req.headers["Authorization"]
+      : getHeader(event, "Authorization");
 
   const decoded = decodeAccessToken(token);
 
@@ -37,8 +41,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const userId = decoded.userId;
-    const user = await getUserById(userId);
+    const user = await getUserById(decoded.userId);
 
     event.context.auth = { user };
   } catch (error) {

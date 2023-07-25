@@ -83,7 +83,7 @@ export default () => {
   const refreshToken = () => {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await fetch("/api/auth/refresh");
+        const data = await $fetch("/api/auth/refresh");
         setToken(data.access_token);
         resolve(true);
       } catch (error) {
@@ -97,6 +97,7 @@ export default () => {
       try {
         const data = await useFetchApi("/api/auth/user");
         setUser(data.user);
+
         resolve(true);
       } catch (error) {
         reject(error);
