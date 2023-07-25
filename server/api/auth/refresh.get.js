@@ -8,6 +8,14 @@ export default defineEventHandler(async (event) => {
 
   const refreshToken = cookies["refresh_token"];
 
+  return sendError(
+    event,
+    createError({
+      statusCode: 401,
+      statusMessage: [cookies, refreshToken],
+    })
+  );
+
   if (!refreshToken) {
     return sendError(
       event,
