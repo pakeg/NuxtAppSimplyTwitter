@@ -97,7 +97,7 @@ export default () => {
       try {
         const data = await useFetchApi("/api/auth/user");
         setUser(data.user);
-        resolve(true);
+        resolve(data.user);
       } catch (error) {
         reject(error);
       }
@@ -123,11 +123,11 @@ export default () => {
       setIsAuthLoading(true);
       try {
         await refreshToken();
-        await getUser();
+        let a = await getUser();
 
         reRefreshAccessToken();
 
-        resolve(true);
+        resolve(a);
       } catch (error) {
         reject(error);
       } finally {
