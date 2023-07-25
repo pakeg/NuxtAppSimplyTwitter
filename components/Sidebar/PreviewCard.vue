@@ -1,6 +1,6 @@
 <template>
   <div
-    class="m-2 border bg-gray-50 dark:bg-dim-700 rounded-full overflow-hidden"
+    class="m-2 border bg-gray-50 dark:bg-dim-700 overflow-hidden"
     :class="twitterBorderColor"
   >
     <h1
