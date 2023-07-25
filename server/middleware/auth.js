@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
 
   const decoded = decodeAccessToken(token);
 
-  if (!decoded.userId) {
+  if (!decoded) {
     return sendError(
       event,
       createError({
