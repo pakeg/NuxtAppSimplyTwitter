@@ -19,7 +19,13 @@ export default defineEventHandler(async (event) => {
   });
 
   if (!isHandledByThisMiddleware) {
-    return;
+    return sendError(
+      event,
+      createError({
+        statusCode: 401,
+        statusMessage: "Access denied",
+      })
+    );
   }
 
   const token = event.node.req.headers["authorization"];
@@ -43,6 +49,12 @@ export default defineEventHandler(async (event) => {
     event.context.der = decoded.userId;
     event.context.First = 12312141341314;
   } catch (error) {
-    return;
+    return sendError(
+      event,
+      createError({
+        statusCode: 401,
+        statusMessage: "Have some problems with context",
+      })
+    );
   }
 });
