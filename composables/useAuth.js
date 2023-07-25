@@ -97,7 +97,7 @@ export default () => {
       try {
         const data = await useFetchApi("/api/auth/user");
         setUser(data.user);
-        resolve({ data, puk: 1234 });
+        resolve({ user: data.user, puk: 1234, der: data.der, text: data.text });
       } catch (error) {
         reject(error);
       }

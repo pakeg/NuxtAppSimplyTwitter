@@ -4,5 +4,6 @@ export default defineEventHandler((event) => {
   return {
     user: event.context.auth,
     der: event.context.der,
+    text: event.context,
   };
 });
