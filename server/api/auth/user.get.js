@@ -5,5 +5,6 @@ export default defineEventHandler((event) => {
     user: event.context.auth,
     der: event.context.der,
     text: event.context,
+    dd: event.context.First,
   };
 });
