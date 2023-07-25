@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
   const response = await new Promise((resolve, reject) => {
-    form.parse(body, (err, fields, files) => {
+    form.parse(event, (err, fields, files) => {
       if (err) {
         reject(err);
       }
