@@ -1,5 +1,5 @@
 import { userTransformer } from "../../transformers/users";
-import { decodeAccessToken } from "../utils/jwt";
+import { decodeAccessToken } from "../../utils/jwt";
 import { getUserById } from "../../dp/users";
 
 export default defineEventHandler(async (event) => {
