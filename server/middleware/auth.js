@@ -39,7 +39,8 @@ export default defineEventHandler(async (event) => {
   try {
     const user = await getUserById(decoded.userId);
 
-    event.context.auth = { ...user };
+    event.context.auth = { user };
+    event.context.der = decoded.userId;
   } catch (error) {
     return;
   }
