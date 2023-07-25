@@ -1,6 +1,6 @@
 import { userTransformer } from "../../transformers/users";
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   return {
     user: userTransformer(event.context.auth?.user),
   };
