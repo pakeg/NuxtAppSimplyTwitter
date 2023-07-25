@@ -17,17 +17,7 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  try {
-    const user = await getUserById(token.userId);
+  const user = await getUserById(token.userId);
 
-    return { user: userTransformer(user) };
-  } catch (error) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 500,
-        statusMessage: "Something went wrong",
-      })
-    );
-  }
+  return { user: userTransformer(user) };
 });
