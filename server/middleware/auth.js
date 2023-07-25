@@ -1,6 +1,7 @@
 import UrlPattern from "url-pattern";
 import { decodeAccessToken } from "../utils/jwt";
 import { sendError } from "h3";
+import { getUserById } from "../dp/users";
 
 export default defineEventHandler(async (event) => {
   const endpoints = [
@@ -21,7 +22,11 @@ export default defineEventHandler(async (event) => {
     return;
   }
 
-  const token = getHeader(event, "Authorization");
+  const token =
+    event.node.req.headers["Authorization"] != "" ||
+    event.node.req.headers["Authorization"] != undefined
+      ? event.node.req.headers["Authorization"]
+      : getHeader(event, "Authorization");
 
   const decoded = decodeAccessToken(token);
 
@@ -33,5 +38,13 @@ export default defineEventHandler(async (event) => {
         statusMessage: "Unauthorized",
       })
     );
+  }
+
+  try {
+    const user = await getUserById(decoded.userId);
+
+    event.context.auth = { user };
+  } catch (error) {
+    return;
   }
 });

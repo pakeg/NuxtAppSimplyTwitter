@@ -87,8 +87,7 @@ const handleOpenTweetModal = () => {
   openPostTweetModal();
 };
 
-onBeforeMount(async () => {
-  let a = await initAuth();
-  console.log(a);
+onBeforeMount(() => {
+  initAuth();
 });
 </script>

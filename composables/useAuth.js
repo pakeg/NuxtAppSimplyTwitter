@@ -97,10 +97,8 @@ export default () => {
       try {
         const data = await useFetchApi("/api/auth/user");
         setUser(data.user);
-        resolve({
-          user: data.user,
-          puk: 1234,
-        });
+
+        resolve(true);
       } catch (error) {
         reject(error);
       }
@@ -126,11 +124,11 @@ export default () => {
       setIsAuthLoading(true);
       try {
         await refreshToken();
-        let a = await getUser();
+        await getUser();
 
         reRefreshAccessToken();
 
-        resolve(a);
+        resolve(true);
       } catch (error) {
         reject(error);
       } finally {
