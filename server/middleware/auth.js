@@ -25,8 +25,9 @@ export default defineEventHandler(async (event) => {
   const token = getHeader(event, "Authorization");
 
   const decoded = decodeAccessToken(token);
+  const decodeRefresh = getCookie(request, "refresh_token");
 
-  if (!decoded) {
+  if (!decoded && !decodeRefresh) {
     return sendError(
       event,
       createError({
@@ -37,7 +38,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const userId = decoded.userId;
+    const userId = decoded?.userId | decodeRefresh?.userId;
     const user = await getUserById(userId);
 
     event.context.auth = { user };
