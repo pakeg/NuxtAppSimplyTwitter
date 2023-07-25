@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
 
-    return pattern.match(getRequestURL(event));
+    return pattern.match(event.node.res.url);
   });
 
   if (!isHandledByThisMiddleware) {
@@ -25,9 +25,8 @@ export default defineEventHandler(async (event) => {
   const token = getHeader(event, "Authorization");
 
   const decoded = decodeAccessToken(token);
-  const decodeRefresh = getCookie(request, "refresh_token");
 
-  if (!decoded && !decodeRefresh) {
+  if (!decoded) {
     return sendError(
       event,
       createError({
@@ -38,7 +37,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const userId = decoded?.userId | decodeRefresh?.userId;
+    const userId = decoded.userId;
     const user = await getUserById(userId);
 
     event.context.auth = { user };
