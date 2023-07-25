@@ -79,7 +79,7 @@
 <script setup>
 const { twitterBorderColor } = useTailwindConfig();
 const text = ref("");
-const imageInput = ref();
+const imageInput = ref(null);
 const selectedFile = ref(null);
 const inputImageUrl = ref(null);
 const emits = defineEmits(["onSubmit"]);

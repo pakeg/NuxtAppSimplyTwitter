@@ -21,18 +21,42 @@ export default () => {
     authLoading.value = value;
   };
 
+  const registerUser = ({
+    username,
+    email,
+    password,
+    repeatPassword,
+    name,
+  }) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = await $fetch("/api/auth/register", {
+          method: "POST",
+          body: { username, email, password, repeatPassword, name },
+        });
+
+        setToken(data.access_token);
+        setUser(data.user);
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
   const login = ({ username, password }) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await fetch("/api/auth/login", {
+        const data = await $fetch("/api/auth/login", {
           method: "POST",
           body: { username, password },
         });
 
-        setToken(data?.access_token);
-        setUser(data?.user);
+        setToken(data.access_token);
+        setUser(data.user);
 
-        resolve({ ob: [data?.body, data?.username, data?.password] });
+        resolve(true);
       } catch (error) {
         reject(error);
       }
@@ -112,5 +136,13 @@ export default () => {
     });
   };
 
-  return { login, logout, useAuthUser, useAuthToken, initAuth, useAuthLoading };
+  return {
+    login,
+    logout,
+    useAuthUser,
+    useAuthToken,
+    initAuth,
+    useAuthLoading,
+    registerUser,
+  };
 };

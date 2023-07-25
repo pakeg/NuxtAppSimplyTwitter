@@ -10,8 +10,6 @@ export default defineEventHandler(async (event) => {
 
   const { username, password } = body;
 
-  return { username, password, body };
-
   if (!username || !password) {
     return sendError(
       event,

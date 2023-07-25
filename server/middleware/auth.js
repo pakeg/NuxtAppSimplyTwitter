@@ -9,19 +9,20 @@ export default defineEventHandler(async (event) => {
     "/api/user/tweets",
     "/api/tweets",
     "/api/tweets/:id",
+    "/api/auth/refresh",
   ];
 
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
 
-    return pattern.match(event.req.url);
+    return pattern.match(getRequestURL(event).pathname);
   });
 
   if (!isHandledByThisMiddleware) {
     return;
   }
 
-  const token = event.req.headers["authorization"]?.split(" ")[1];
+  const token = getHeader(event, "Authorization")?.split(" ")[1];
 
   const decoded = decodeAccessToken(token);
 
