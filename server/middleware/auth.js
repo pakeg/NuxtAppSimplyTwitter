@@ -37,10 +37,9 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const userId = decoded.userId;
-    const user = await getUserById(userId);
+    const user = await getUserById(decoded.userId);
 
-    event.context.auth = { user };
+    event.context.auth = { ...user };
   } catch (error) {
     return;
   }
